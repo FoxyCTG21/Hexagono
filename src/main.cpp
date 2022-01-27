@@ -11,12 +11,12 @@ Servo petalo5; // crea el objeto servo
 Servo petalo6; // crea el objeto servo
 
 //////////////
-int pos1 = 20; // posicion del servo offset inicial 130
-int pos2 = 20; // posicion del servo offset inicial 130
-int pos3 = 20; // posicion del servo offset inicial 130
-int pos4 = 20; // posicion del servo offset inicial 130
-int pos5 = 20; // posicion del servo offset inicial 130
-int pos6 = 20; // posicion del servo offset inicial 130
+int pos1 = 170; // posicion del servo offset inicial 130
+int pos2 = 170; // posicion del servo offset inicial 130
+int pos3 = 170; // posicion del servo offset inicial 130
+int pos4 = 170; // posicion del servo offset inicial 130
+int pos5 = 170; // posicion del servo offset inicial 130
+int pos6 = 170; // posicion del servo offset inicial 130
 
 //////////////
 
@@ -34,9 +34,9 @@ void offset()
     ///////////////////////////////////// Offset motor1
     int x1 = petalo1.read();
     pos1 = x1;
-    for (int i = x1 - 20; i >= 0; i--)
+    for (int i = x1 - 180; i >= 0; i--)
     {
-        pos1--;
+        pos1++;
         petalo1.write(pos1);
         delay(10);
     }
@@ -90,7 +90,7 @@ void offset()
 void cerrar()
 {
     ///////////////////////////////////// ABRIR PETALO1
-    if (pos1 <= 130 && estado1 == 0)
+    if (pos1 <= 180 && estado1 == 0)
     {
         pos1++;
         petalo1.write(pos1);
@@ -101,7 +101,7 @@ void cerrar()
         }
     }
     ///////////////////////////////////// ABRIR PETALO2
-    if (pos2 <= 130 && estado2 == 0 && pos1 >= 65)
+    if (pos2 <= 180 && estado2 == 0 && pos1 >= 45)
     {
         pos2++;
         petalo2.write(pos2);
@@ -112,7 +112,7 @@ void cerrar()
         }
     }
     ///////////////////////////////////// ABRIR PETALO3
-    if (pos3 <= 130 && estado3 == 0 && pos2 >= 65)
+    if (pos3 <= 180 && estado3 == 0 && pos2 >= 45)
     {
         pos3++;
         petalo3.write(pos3);
@@ -123,7 +123,7 @@ void cerrar()
         }
     }
     ///////////////////////////////////// ABRIR PETALO4
-    if (pos4 <= 130 && estado4 == 0 && pos3 >= 65)
+    if (pos4 <= 180 && estado4 == 0 && pos3 >= 45)
     {
         pos4++;
         petalo4.write(pos4);
@@ -134,7 +134,7 @@ void cerrar()
         }
     }
     ///////////////////////////////////// ABRIR PETALO5
-    if (pos5 <= 130 && estado5 == 0 && pos4 >= 65)
+    if (pos5 <= 180 && estado5 == 0 && pos4 >= 45)
     {
         pos5++;
         petalo5.write(pos5);
@@ -145,7 +145,7 @@ void cerrar()
         }
     }
     ///////////////////////////////////// ABRIR PETALO6
-    if (pos6 <= 130 && estado6 == 0 && pos5 >= 65)
+    if (pos6 <= 180 && estado6 == 0 && pos5 >= 45)
     {
         pos6++;
         petalo6.write(pos6);
@@ -160,7 +160,7 @@ void cerrar()
 void abrir()
 {
     ///////////////////////////////////// ABRIR PETALO1
-    if (pos1 >= 20 && estado1 == 1)
+    if (pos1 >= 0 && estado1 == 1)
     {
         pos1--;
         petalo1.write(pos1);
@@ -171,7 +171,7 @@ void abrir()
         }
     }
     ///////////////////////////////////// ABRIR PETALO2
-    if (pos2 >= 20 && estado2 == 1 && pos1 <= 65)
+    if (pos2 >= 0 && estado2 == 1 && pos1 <= 45)
     {
         pos2--;
         petalo2.write(pos2);
@@ -182,7 +182,7 @@ void abrir()
         }
     }
     ///////////////////////////////////// ABRIR PETALO3
-    if (pos3 >= 20 && estado3 == 1 && pos2 <= 65)
+    if (pos3 >= 0 && estado3 == 1 && pos2 <= 45)
     {
         pos3--;
         petalo3.write(pos3);
@@ -193,7 +193,7 @@ void abrir()
         }
     }
     ///////////////////////////////////// ABRIR PETALO4
-    if (pos4 >= 20 && estado4 == 1 && pos3 <= 65)
+    if (pos4 >= 0 && estado4 == 1 && pos3 <= 45)
     {
         pos4--;
         petalo4.write(pos4);
@@ -204,7 +204,7 @@ void abrir()
         }
     }
     ///////////////////////////////////// ABRIR PETALO5
-    if (pos5 >= 20 && estado5 == 1 && pos4 <= 65)
+    if (pos5 >= 0 && estado5 == 1 && pos4 <= 45)
     {
         pos5--;
         petalo5.write(pos5);
@@ -215,7 +215,7 @@ void abrir()
         }
     }
     ///////////////////////////////////// ABRIR PETALO6
-    if (pos6 >= 20 && estado6 == 1 && pos5 <= 65)
+    if (pos6 >= 0 && estado6 == 1 && pos5 <= 45)
     {
         pos6--;
         petalo6.write(pos6);
@@ -229,7 +229,6 @@ void abrir()
 
 void setup()
 {
-
     petalo1.attach(3);  // vincula el servo al pin digital 3
     petalo2.attach(5);  // vincula el servo al pin digital 5
     petalo3.attach(6);  // vincula el servo al pin digital 6
@@ -237,8 +236,7 @@ void setup()
     petalo5.attach(10); // vincula el servo al pin digital 10
     petalo6.attach(11); // vincula el servo al pin digital 11
     ///////////////// Generador de punto de partida
-    Serial.begin(9600);
-    Serial.println(petalo1.read());
+
     offset();
 }
 
